@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bar</title>
+    <style>
+            @property --pie-progress {
+        syntax: "<percentage>";
+        initial-value: 0%;
+        inherits: false;
+    }
+    :root {
+ 
+  --theme-color-light: aqua;
+  --theme-color-lighter: #dee2e7;
+  --theme-color-lightest: rgb(6, 6, 44);
+}
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body {
+  padding: 10px 40px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+  background-color:rgb(6, 6, 44);
+}
+
+@keyframes progress {
+  from {
+    width: 0;
+  }
+  
+  to {
+    width: var(--progress);
+  }
+}
+
+@keyframes pieProgress {
+  from {
+    --pie-progress: 0%;
+  }
+  
+  to {
+    --pie-progress: var(--progress);
+  }
+}
+
+.pie1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.pie2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.pie3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.pie-progress-bar {
+  position: relative;
+  display: inline-block;
+  height: 90px;
+  width: 90px;
+  margin: 5px;
+  color:#fff;
+  background-color: var(--theme-color-light);
+  --pie-progress: var(--progress);
+  background-image: conic-gradient(
+    var(--theme-color-light) 0%,
+    var(--theme-color-light) var(--pie-progress),
+    var(--theme-color-lighter) var(--pie-progress)
+  );
+  animation: pieProgress 2s;
+  border-radius: 50%;
+}
+ span{
+    font-size: 16px;
+    color: #fff;
+
+}
+
+.pie-progress-bar:after {
+  content: attr(progress);
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  background: var(--theme-color-lightest);
+  border-radius: 50%;
+  font-size: 12px;
+  text-align: center;
+  line-height: 60px;
+}
+    </style>
+</head>
+<body>
+    <div class="pie1">
+        <i class="pie-progress-bar" progress="90%" style="--progress: 90%"></i>
+        <span>HTML</span>
+        </div>
+        <div class="pie2">
+        <i class="pie-progress-bar" progress="85%" style="--progress: 85%"></i>
+        <span>CSS</span>
+        </div>
+        <div class="pie3">
+        <i class="pie-progress-bar" progress="70%" style="--progress: 70%"></i>
+        <span>JS</span>
+        </div>
+</body>
+</html>
